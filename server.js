@@ -44,7 +44,7 @@ io.on('connection', (sockets) => {
    })
 
    sockets.on('CHATROOM::SET_MESSAGE', ({roomId, userName, messageText, timeOfMessage}) => {
-      const infoMessage = {userName, messageText, timeOfMessage}
+      const infoMessage = {userName, messageText, timeOfMessage, roomId}
 
       rooms.get(roomId).get('messages').push(infoMessage)
       sockets.broadcast.to(roomId).emit('CHATROOM::SET_MESSAGE', infoMessage)

@@ -3,7 +3,6 @@ import axios from "axios";
 import {connect} from "react-redux";
 import {toLogin} from '../reducer/actions'
 import {bindActionCreators} from "redux";
-import socket from "../connection/connectionSocket";
 
 function Authentication(props) {
     const [name, setName] = React.useState('')
@@ -17,8 +16,6 @@ function Authentication(props) {
     return (
         <div className={'auth-window'}>
             <p className='auth-window__title'>Введите имя</p>
-
-            {/*<input placeholder={'Комната'} className='auth-window__input' type={'text'} value={room} onChange={event => setRoom(event.target.value)}/>*/}
             <input placeholder={'Имя'} className='auth-window__input' type={'text'} value={name} onChange={event => setName(event.target.value)}/>
             <button onClick={submitHandler} className='auth-window__button'>Войти</button>
         </div>

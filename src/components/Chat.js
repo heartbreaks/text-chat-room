@@ -19,7 +19,7 @@ function Chat({messages, getNewMessage, userName, roomId}) {
          }).split(' ').slice(1).join(' ')
 
          socket.emit('CHATROOM::SET_MESSAGE', { messageText, userName, roomId, timeOfMessage })
-         getNewMessage({ messageText, userName, timeOfMessage })
+         getNewMessage({ messageText, userName, timeOfMessage, roomId })
          setMessageText('')
      }
   }

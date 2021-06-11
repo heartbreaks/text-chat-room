@@ -20,12 +20,11 @@ export function addNewChat({roomId, name, id}) {
         )
 
         await axios.post('/rooms', {roomId, name, id})
-        const {data} = await axios.get(`/rooms/roomId}`)
+        const {data} = await axios.get(`/rooms/${roomId}`)
 
-        console.log(data)
         dispatch({
             type: ADD_NEW_CHAT,
-            payload: data,
+            payload: {...data, roomId},
         })
     }
 }

@@ -5,8 +5,8 @@ import {connect} from "react-redux";
 import axios from "axios";
 import {addNewChat} from "../reducer/actions";
 
-function Menu({name, addNewChat}){
-    const chatrooms = []
+function Menu({name, addNewChat, chatrooms}){
+
     const [room, setRoom] = React.useState('')
 
     const submitHandler = async () => {
