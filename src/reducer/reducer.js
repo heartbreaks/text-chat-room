@@ -14,6 +14,7 @@ export const reducer =  (state = initialState, action) => {
         case AUTHENTICATED:
             return {...state, ...action.payload}
         case UPDATE_USER_LIST:
+            const currenRoom = state.rooms.get(state.currentRoom.roomId).set('users', action.payload)
             return {...state, currentRoom: {roomId: state.currentRoom.roomId, users: action.payload, messages: [...state.currentRoom.messages]}}
         case SET_DATA_CHAT:
             return {...state, ...action.payload}
