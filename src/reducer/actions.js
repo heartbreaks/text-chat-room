@@ -1,11 +1,11 @@
-import {AUTHENTICATED, UPDATE_USER_LIST, ADD_NEW_CHAT, SET_DATA_CHAT, SELECT_CHAT, SET_NEW_MESSAGE} from "./types";
+import {AUTHENTICATED, UPDATE_USER_LIST, ADD_NEW_CHAT, SELECT_CHAT, SET_NEW_MESSAGE} from "./types";
 import axios from "axios";
 import socket from "../connection/connectionSocket";
 
 export function toLogin(connectInfo) {
     return {
         type: AUTHENTICATED,
-        payload: {isAuth: true, users: [],  name: connectInfo.name, /* roomId: connectInfo.roomId ,*/ id: connectInfo.id},
+        payload: {isAuth: true, users: [],  name: connectInfo.name, id: connectInfo.id},
     }
 }
 

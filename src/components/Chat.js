@@ -4,7 +4,6 @@ import {getNewMessage} from '../reducer/actions'
 import {connect} from "react-redux";
 import React from "react";
 import socket from "../connection/connectionSocket";
-import {logger} from "redux-logger/src";
 
 function Chat({messages, getNewMessage, userName, roomId}) {
   const [messageText, setMessageText] = React.useState('')

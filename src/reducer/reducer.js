@@ -1,4 +1,4 @@
-import {AUTHENTICATED, SELECT_CHAT, UPDATE_USER_LIST, SET_DATA_CHAT,ADD_NEW_CHAT, SET_NEW_MESSAGE} from './types'
+import {AUTHENTICATED, SELECT_CHAT, UPDATE_USER_LIST,ADD_NEW_CHAT, SET_NEW_MESSAGE} from './types'
 
 const initialState = {
     name: null,
@@ -16,8 +16,6 @@ export const reducer =  (state = initialState, action) => {
         case UPDATE_USER_LIST:
             const currenRoom = state.rooms.get(state.currentRoom.roomId).set('users', action.payload)
             return {...state, currentRoom: {roomId: state.currentRoom.roomId, users: action.payload, messages: [...state.currentRoom.messages]}}
-        case SET_DATA_CHAT:
-            return {...state, ...action.payload}
         case SET_NEW_MESSAGE:
             state.rooms.get(action.payload.roomId).get('messages').push(action.payload)
             const messages = [...state.rooms.get(state.currentRoom.roomId).get('messages')]

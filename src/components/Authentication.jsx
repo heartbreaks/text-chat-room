@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from "axios";
 import {connect} from "react-redux";
 import {toLogin} from '../reducer/actions'
 import {bindActionCreators} from "redux";

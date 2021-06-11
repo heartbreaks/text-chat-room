@@ -1,6 +1,5 @@
 export const AUTHENTICATED = 'AUTHENTICATED'
 export const UPDATE_USER_LIST = 'UPDATE_USER_LIST'
-export const SET_DATA_CHAT = 'SET_DATA_CHAT'
 export const SET_NEW_MESSAGE = 'SET_NEW_MESSAGE'
 export const ADD_NEW_CHAT = 'ADD_NEW_CHAT'
 export const SELECT_CHAT = 'SELECT_CHAT'
