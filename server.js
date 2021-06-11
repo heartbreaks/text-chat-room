@@ -44,12 +44,13 @@ io.on('connection', (sockets) => {
    })
 
    sockets.on('CHATROOM::SET_MESSAGE', ({roomId, userName, messageText, timeOfMessage}) => {
-      const infoMessage = {userName, messageText, timeOfMessage}
+      const infoMessage = {userName, messageText, timeOfMessage, roomId}
 
       rooms.get(roomId).get('messages').push(infoMessage)
       sockets.broadcast.to(roomId).emit('CHATROOM::SET_MESSAGE', infoMessage)
    })
 
+   // Необходимо удалять из всех комнат после выхода
    sockets.on('disconnect', () => {
       rooms.forEach((element, roomId) => {
          if (element.get('users').delete(sockets.UserId)) {

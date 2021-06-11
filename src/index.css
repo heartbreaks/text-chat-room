@@ -207,3 +207,36 @@ body {
 .auth-window__button_radius_none {
   border-radius: 0;
 }
+
+.chat-window__add-room {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  border-bottom: 1px solid #cfcfcf;
+}
+
+.chat-window__add {
+  width: 150px;
+  border: 1px solid #cfcfcf;
+}
+
+.chat-window__add-room-button {
+  outline: none;
+  border: 1px solid #cfcfcf;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.chat-window__add-room-button:hover {
+  background-color: white;
+}
+
+.chat-window__subtitle {
+  color: #bababa;
+  font-size: 18px;
+}
+
+.chat-window__add-room-button:active {
+  background-color: #bebebe;
+}

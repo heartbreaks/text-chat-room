@@ -1,11 +1,11 @@
 export function getNameFromState(state) {
-    return {name: state.name}
+    return {name: state.name, chatrooms: [...state.rooms.keys()]}
 }
 
 export function getUsersList(state) {
-    return {users: state.users}
+    return {users: state.currentRoom.users}
 }
 
 export function getMessages(state) {
-    return {messages: state.messages, userName: state.name, roomId: state.roomId}
+    return {messages: state.currentRoom.messages, userName: state.name, roomId: state.currentRoom.roomId}
 }
