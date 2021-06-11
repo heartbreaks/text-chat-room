@@ -50,6 +50,7 @@ io.on('connection', (sockets) => {
       sockets.broadcast.to(roomId).emit('CHATROOM::SET_MESSAGE', infoMessage)
    })
 
+   // Необходимо удалять из всех комнат после выхода
    sockets.on('disconnect', () => {
       rooms.forEach((element, roomId) => {
          if (element.get('users').delete(sockets.UserId)) {

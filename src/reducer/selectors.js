@@ -7,5 +7,5 @@ export function getUsersList(state) {
 }
 
 export function getMessages(state) {
-    return {messages: state.currentRoom.messages, userName: state.name, roomId: state.roomId}
+    return {messages: state.currentRoom.messages, userName: state.name, roomId: state.currentRoom.roomId}
 }

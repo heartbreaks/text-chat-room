@@ -1,4 +1,4 @@
-import {AUTHENTICATED, UPDATE_USER_LIST, ADD_NEW_CHAT, SET_DATA_CHAT, SET_NEW_MESSAGE} from "./types";
+import {AUTHENTICATED, UPDATE_USER_LIST, ADD_NEW_CHAT, SET_DATA_CHAT, SELECT_CHAT, SET_NEW_MESSAGE} from "./types";
 import axios from "axios";
 import socket from "../connection/connectionSocket";
 
@@ -43,11 +43,9 @@ export function getNewMessage(message) {
     }
 }
 
-export function sendNewMessage({ messageText, userName, roomId }) {
-
-//     socket.emit('CHATROOM::SET_MESSAGE', { messageText, userName, roomId })
-//     return {
-//         type: SET_NEW_MESSAGE,
-//         payload: { messageText, userName, roomId }
-//     }
+export function selectChat(roomId) {
+    return {
+        type: SELECT_CHAT,
+        payload: roomId
+    }
 }

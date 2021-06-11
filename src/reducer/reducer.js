@@ -1,13 +1,12 @@
-import {AUTHENTICATED, UPDATE_USER_LIST, SET_DATA_CHAT,ADD_NEW_CHAT, SET_NEW_MESSAGE} from './types'
+import {AUTHENTICATED, SELECT_CHAT, UPDATE_USER_LIST, SET_DATA_CHAT,ADD_NEW_CHAT, SET_NEW_MESSAGE} from './types'
 
 const initialState = {
     name: null,
-    roomId: null,
     id: null,
     users: [],
     messages: [],
     rooms: new Map(),
-    currentRoom: {users: [], messages: []}
+    currentRoom: {roomId: '', users: [], messages: []}
 }
 
 export const reducer =  (state = initialState, action) => {
@@ -15,12 +14,15 @@ export const reducer =  (state = initialState, action) => {
         case AUTHENTICATED:
             return {...state, ...action.payload}
         case UPDATE_USER_LIST:
-            return {...state, currentRoom: {users: action.payload, messages: [...state.currentRoom.messages]}}
+            return {...state, currentRoom: {roomId: state.currentRoom.roomId, users: action.payload, messages: [...state.currentRoom.messages]}}
         case SET_DATA_CHAT:
             return {...state, ...action.payload}
         case SET_NEW_MESSAGE:
             state.rooms.get(action.payload.roomId).get('messages').push(action.payload)
-            return {...state, currentRoom: {id: action.payload.roomId, users:state.currentRoom.users, messages: [...state.currentRoom.messages, action.payload]}}
+            const messages = [...state.rooms.get(state.currentRoom.roomId).get('messages')]
+
+
+            return {...state, currentRoom: {roomId: state.currentRoom.roomId, users: state.currentRoom.users, messages}}
         case ADD_NEW_CHAT:
             const {roomId} = action.payload
             const {rooms} = state
@@ -30,13 +32,19 @@ export const reducer =  (state = initialState, action) => {
                     ['users', [...action.payload.users]],
                     ['messages', []]
                 ]))
-                return {...state,roomId, currentRoom: {
+                return {...state, currentRoom: {
+                    roomId,
                     users: [...rooms.get(roomId).get('users').values()],
                     messages: []
                 }}
             }
+            return {...state}
+        case SELECT_CHAT:
+            const room = state.rooms.get(action.payload)
+            const users = [...room.get('users').values()]
+            const messageList = [...room.get('messages')]
 
-            return {...state, roomId: action.payload.roomId}
+            return {...state, currentRoom: {roomId: action.payload, users, messages: messageList}}
         default:
             return {...state}
     }
