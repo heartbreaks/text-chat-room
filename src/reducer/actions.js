@@ -1,27 +1,33 @@
-import {AUTHENTICATED, UPDATE_USER_LIST, SET_DATA_CHAT, SET_NEW_MESSAGE} from "./types";
+import {AUTHENTICATED, UPDATE_USER_LIST, ADD_NEW_CHAT, SET_DATA_CHAT, SET_NEW_MESSAGE} from "./types";
 import axios from "axios";
 import socket from "../connection/connectionSocket";
 
 export function toLogin(connectInfo) {
+    return {
+        type: AUTHENTICATED,
+        payload: {isAuth: true, users: [],  name: connectInfo.name, /* roomId: connectInfo.roomId ,*/ id: connectInfo.id},
+    }
+}
+
+
+export function addNewChat({roomId, name, id}) {
     return async (dispatch) => {
-        dispatch({
-            type: AUTHENTICATED,
-            payload: {isAuth: true, users: [],  name: connectInfo.name, roomId: connectInfo.roomId, id: connectInfo.id},
-        })
         socket.emit('CHATROOM::CONNECT',
             {
-                name: connectInfo.name,
-                roomId: connectInfo.roomId,
-                id: connectInfo.id}
+                name: name,
+                roomId: roomId,
+                id: id}
         )
-        const {data} = await axios.get(`/rooms/${connectInfo.roomId}`)
 
+        await axios.post('/rooms', {roomId, name, id})
+        const {data} = await axios.get(`/rooms/roomId}`)
+
+        console.log(data)
         dispatch({
-            type: SET_DATA_CHAT,
+            type: ADD_NEW_CHAT,
             payload: data,
         })
     }
-
 }
 
 export function updateListeners(userList) {

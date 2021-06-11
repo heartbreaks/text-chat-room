@@ -3,6 +3,7 @@ export function getNameFromState(state) {
 }
 
 export function getUsersList(state) {
+    console.log(state.currentRoom)
     return {users: state.users}
 }
 
