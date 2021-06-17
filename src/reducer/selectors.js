@@ -3,7 +3,10 @@ export function getNameFromState(state) {
 }
 
 export function getUsersList(state) {
-    return {users: state.currentRoom.users}
+    if (state.currentRoom.roomId) {
+        return {users: state.currentRoom.users, roomId: state.currentRoom.roomId}
+    }
+    return {roomId: null}
 }
 
 export function getMessages(state) {

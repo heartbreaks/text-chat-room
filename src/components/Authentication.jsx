@@ -6,10 +6,12 @@ import {bindActionCreators} from "redux";
 function Authentication(props) {
     const [name, setName] = React.useState('')
 
-    const submitHandler = async (event) => {
-        const id = Date.now()
-        const connectInfo = {name, id}
-        return props.toLogin(connectInfo)
+    const submitHandler = (event) => {
+        if (name) {
+            const id = Date.now()
+            const connectInfo = {name, id}
+            return props.toLogin(connectInfo)
+        }
     }
 
     return (

@@ -2,6 +2,9 @@ import Menu from "./Menu";
 import Chat from "./Chat";
 import {connect} from "react-redux";
 import {getUsersList} from '../reducer/selectors'
+import React from "react";
+import AlertChat from "./AlertChat";
+import UsersList from './UsersList'
 
 function ChatWindow(props) {
 
@@ -9,14 +12,7 @@ function ChatWindow(props) {
         <>
             <Menu />
             <Chat />
-            <div className="chat-window__users">
-                <h2>Пользователи: ({props.users.length})</h2>
-                <ul>
-                    {props.users.map((user, index) => {
-                        return <li className='chat-window__user-tall' key={index}>{user}</li>
-                    })}
-                </ul>
-            </div>
+            {props.roomId ? <UsersList users={props.users}/> : <AlertChat />}
         </>
     )
 }

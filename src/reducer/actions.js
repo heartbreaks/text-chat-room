@@ -5,7 +5,7 @@ import socket from "../connection/connectionSocket";
 export function toLogin(connectInfo) {
     return {
         type: AUTHENTICATED,
-        payload: {isAuth: true, users: [],  name: connectInfo.name, id: connectInfo.id},
+        payload: {isAuth: true,  name: connectInfo.name, id: connectInfo.id},
     }
 }
 

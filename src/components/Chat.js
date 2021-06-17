@@ -4,6 +4,7 @@ import {getNewMessage} from '../reducer/actions'
 import {connect} from "react-redux";
 import React from "react";
 import socket from "../connection/connectionSocket";
+import AlertChat from "./AlertChat";
 
 function Chat({messages, getNewMessage, userName, roomId}) {
   const [messageText, setMessageText] = React.useState('')
@@ -34,10 +35,12 @@ function Chat({messages, getNewMessage, userName, roomId}) {
               return <Message userName={userName} message={message} key={index}/>
           })}
       </div>
-        <div className="chat-window__control">
-            <input value={messageText} onChange={(e) => setMessageText(e.target.value)} className='chat-window__chat-input' />
-            <button onClick={submitHandler} className='auth-window__button auth-window__button_space_left auth-window__button_radius_none'>Отправить</button>
-        </div>
+        {!roomId ? <AlertChat /> : (
+            <div className="chat-window__control">
+                <input value={messageText} onChange={(e) => setMessageText(e.target.value)} className='chat-window__chat-input' />
+                <button onClick={submitHandler} className='auth-window__button auth-window__button_space_left auth-window__button_radius_none'>Отправить</button>
+            </div>
+        )}
     </div>
   );
 }

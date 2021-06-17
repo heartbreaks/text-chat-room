@@ -3,10 +3,8 @@ import {AUTHENTICATED, SELECT_CHAT, UPDATE_USER_LIST,ADD_NEW_CHAT, SET_NEW_MESSA
 const initialState = {
     name: null,
     id: null,
-    users: [],
-    messages: [],
     rooms: new Map(),
-    currentRoom: {roomId: '', users: [], messages: []}
+    currentRoom: {roomId: null, users: [], messages: []}
 }
 
 export const reducer =  (state = initialState, action) => {
