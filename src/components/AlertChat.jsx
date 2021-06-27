@@ -1,12 +1,12 @@
-import React from "react";
-import {connect} from "react-redux";
+import React from 'react';
+import {connect} from 'react-redux';
 
 function AlertChat(props) {
-    return (
-        <>
-            <h1 className='alert-chat__title'>Чат не выбран</h1>
-        </>
-    )
+  return (
+    <>
+      <h1 className='alert-chat__title'>Чат не выбран</h1>
+    </>
+  );
 }
 
-export default connect()(AlertChat)
+export default connect()(AlertChat);

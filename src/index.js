@@ -3,25 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-import {Provider} from "react-redux";
-import {reducer} from "./reducer/reducer";
-import {applyMiddleware, createStore, compose} from "redux";
+import {Provider} from 'react-redux';
+import {reducer} from './reducer/reducer';
+import {applyMiddleware, createStore, compose} from 'redux';
 import {createLogger} from 'redux-logger';
-import thunk from "redux-thunk";
+import thunk from 'redux-thunk';
 
 const logger = createLogger({
-    log: 'info'
-})
+  log: 'info',
+});
 
 const store = createStore(reducer, compose(applyMiddleware(
-    thunk, logger
-)))
+    thunk, logger,
+)));
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+      <App />
     </Provider>,
-  document.getElementById("chat-window")
+    document.getElementById('chat-window'),
 );
 
 
